@@ -1,7 +1,14 @@
 import * as React from 'react'
 import { createAnimation } from "./helpers/animation";
+import { cssValue } from "./helpers/unitConverter";
 
-export default function Border({children}) {
+export default function Border({
+  children, 
+  width="inherit", 
+  height="500px",
+  borderWidth="4px",
+  ...additionalprops
+        }) {
   
   const toTop= createAnimation(
     "to-top",
@@ -23,13 +30,16 @@ export default function Border({children}) {
     `100% { right: 200% }`
   )
 
+
+
   const wrapper : React.CSSProperties ={
     marginInline: "auto",
     position: "relative",
-    width: "200px",
-    height: "500px",
+    width: cssValue(width),
+    height: cssValue(height),
     backgroundColor: "white",
-    overflow: "hidden"
+    overflow: "hidden",
+
   }
 
 
@@ -39,7 +49,7 @@ export default function Border({children}) {
     background: "linear-gradient(to bottom, #2bd9e9, #5c60e200)",
     left: "0",
     bottom: "-100%",
-    width: "5px",
+    width: cssValue(borderWidth),
     height: "100%",
    
   }
@@ -50,7 +60,7 @@ export default function Border({children}) {
     background: "linear-gradient(to bottom, #5c60e200, #2bd9e9)",
     right: "0",
     top: "-100%",
-    width: "5px",
+    width: cssValue(borderWidth),
     height: "100%"
   }
 
@@ -61,7 +71,7 @@ export default function Border({children}) {
     background: "linear-gradient(to right, #5c60e200, #2bd9e9)",
     top: "0",
     width: "100%",
-    height: "5px",
+    height: cssValue(borderWidth),
     left: "-100%"
   }
 
@@ -73,10 +83,10 @@ export default function Border({children}) {
     bottom: "0",
     right: "-100%",
     width: "100%",
-    height: "5px"
+    height: cssValue(borderWidth)
   }
   return (
-    <div style={wrapper}>
+    <div style={wrapper} {...additionalprops}>
       <div aria-hidden="true" >
         <span style={cardLineLeft}></span>
         <span style={cardLineRight}></span>

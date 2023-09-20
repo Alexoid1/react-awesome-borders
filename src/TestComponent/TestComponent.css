@@ -9,4 +9,5 @@
 
 .test-component .heading {
   font-size: var(--heading-font-size);
+  width: 360px;
 }
