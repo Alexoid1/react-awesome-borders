@@ -1,4 +1,59 @@
-import React from 'react';
+import * as React from 'react';
+import React__default from 'react';
+
+function Border(_a) {
+    var children = _a.children;
+    var wrapper = {
+        marginInline: "auto"
+    };
+    var cardLineLeft = {
+        position: "absolute",
+        animation: "1s 1s linear infinite",
+        animationName: "to-top",
+        background: "linear-gradient(to bottom, #2bd9e9, trasparent)",
+        left: "0px",
+        bottom: "-100%",
+        width: "0.2em",
+        height: "100%"
+    };
+    var cardLineRight = {
+        position: "absolute",
+        animation: "1s 1s linear infinite",
+        animationName: "to-bottom",
+        background: "linear-gradient(to bottom, trasparent, #2bd9e9)",
+        right: "0px",
+        top: "-100%",
+        width: "0.2em",
+        height: "100%"
+    };
+    var cardLineTop = {
+        position: "absolute",
+        animation: "1s 1s linear infinite",
+        animationName: "to-right",
+        background: "linear-gradient(to right, trasparent, #2bd9e9)",
+        top: "0px",
+        width: "100%",
+        height: "0.2em",
+        left: "-100%"
+    };
+    var cardLineBottom = {
+        position: "absolute",
+        animation: "1s 1s linear infinite",
+        animationName: "to-left",
+        background: "linear-gradient(to right, #2bd9e9, transparent)",
+        bottom: "0px",
+        right: "-100%",
+        width: "100%",
+        height: "0.2em"
+    };
+    return (React.createElement("div", { style: wrapper },
+        React.createElement("div", { "aria-hidden": "true" },
+            React.createElement("span", { style: cardLineLeft }),
+            React.createElement("span", { style: cardLineRight }),
+            children,
+            React.createElement("span", { style: cardLineTop }),
+            React.createElement("span", { style: cardLineBottom, className: "card_line card_line_bottom" }))));
+}
 
 function styleInject(css, ref) {
   if ( ref === void 0 ) ref = {};
@@ -32,9 +87,10 @@ styleInject(css_248z);
 
 var TestComponent = function (_a) {
     var heading = _a.heading, content = _a.content;
-    return (React.createElement("div", { "data-testid": "test-component", className: "test-component" },
-        React.createElement("h1", { "data-testid": "test-component__heading", className: "heading" }, heading),
-        React.createElement("div", { "data-testid": "test-component__content" }, content)));
+    return (React__default.createElement(Border, null,
+        React__default.createElement("div", { "data-testid": "test-component", className: "test-component" },
+            React__default.createElement("h1", { "data-testid": "test-component__heading", className: "heading" }, heading),
+            React__default.createElement("div", { "data-testid": "test-component__content" }, content))));
 };
 
 export { TestComponent };
