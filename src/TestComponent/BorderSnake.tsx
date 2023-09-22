@@ -2,12 +2,12 @@ import * as React from 'react'
 import { createAnimation } from "./helpers/animation";
 import { cssValue } from "./helpers/unitConverter";
 
-export default function Border({
+export default function BorderSnake({
   children, 
   width="inherit", 
-  height="500px",
-  borderWidth="4px",
-  ...additionalprops
+  height="auto",
+  borderWidth="5px",
+  color="#2bd9e9"
         }) {
   
   const toTop= createAnimation(
@@ -46,7 +46,7 @@ export default function Border({
   const cardLineLeft : React.CSSProperties={
     position: "absolute",
     animation: `${toTop} 1s linear infinite`,
-    background: "linear-gradient(to bottom, #2bd9e9, #5c60e200)",
+    background: `linear-gradient(to bottom, ${color}, #00ffffff)`,
     left: "0",
     bottom: "-100%",
     width: cssValue(borderWidth),
@@ -57,7 +57,7 @@ export default function Border({
   const cardLineRight : React.CSSProperties={
     position: "absolute",
     animation: `${toBottom} 1s linear infinite`,
-    background: "linear-gradient(to bottom, #5c60e200, #2bd9e9)",
+    background: `linear-gradient(to bottom, #00ffffff, ${color})`,
     right: "0",
     top: "-100%",
     width: cssValue(borderWidth),
@@ -68,7 +68,7 @@ export default function Border({
     position: "absolute",
     animation: `${toRight} 1s linear infinite`,
     animationDelay: "1.5s",
-    background: "linear-gradient(to right, #5c60e200, #2bd9e9)",
+    background: `linear-gradient(to right, #00ffffff, ${color})`,
     top: "0",
     width: "100%",
     height: cssValue(borderWidth),
@@ -79,14 +79,14 @@ export default function Border({
     position: "absolute",
     animation: `${toLeft} 1s linear infinite`,
     animationDelay: "1.5s",
-    background: "linear-gradient(to right, #2bd9e9, #5c60e200)",
+    background: `linear-gradient(to right, ${color}, #00ffffff)`,
     bottom: "0",
     right: "-100%",
     width: "100%",
     height: cssValue(borderWidth)
   }
   return (
-    <div style={wrapper} {...additionalprops}>
+    <div style={wrapper}>
       <div aria-hidden="true" >
         <span style={cardLineLeft}></span>
         <span style={cardLineRight}></span>
