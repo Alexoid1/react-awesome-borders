@@ -2,11 +2,12 @@ import * as React from 'react'
 import { createAnimation } from "./helpers/animation";
 import { cssValue } from "./helpers/unitConverter";
 
-export default function ChromaticBorder({
+export default function SquareBorder({
   children, 
   width="inherit", 
   height="auto",
-  borderWidth="5px",
+  borderWidth="12px",
+  gap="4px",
   color="#032146",
   ...additionalprops
         }) {
@@ -24,8 +25,11 @@ export default function ChromaticBorder({
     position: "relative",
     width: cssValue(width),
     height: cssValue(height),
-    backgroundColor: "white",
-    padding: "4px"
+    background: `repeating-linear-gradient(90deg, ${color}) repeat-x 25% 0,
+    repeating-linear-gradient(180deg, ${color}) repeat-y 0 125%,
+    repeating-linear-gradient(90deg, ${color}) repeat-x 0 125%`,
+    padding: `${gap + borderWidth}`,
+
 
 
   }
@@ -57,11 +61,9 @@ export default function ChromaticBorder({
   return (
    
         <div style={wrapper} {...additionalprops}>
-           <span style={before}></span>
+         
            {children}
-            <span style={after}>  
-               
-            </span>
+         
         </div>
    
   )
